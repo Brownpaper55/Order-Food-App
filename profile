@@ -1,2 +1,2 @@
-web: gunicorn E_kitchen.wsgi --log-file
-web: python manage.py migrate && gunicorn E_kitchen.wsg
+web: gunicorn kitchenette.wsgi --log-file
+web: python manage.py migrate && gunicorn kitchenette.wsgi
