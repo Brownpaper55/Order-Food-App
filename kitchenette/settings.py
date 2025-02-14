@@ -29,8 +29,8 @@ SECRET_KEY = 'django-insecure-7-!2$a-5=zyra0i2j7efs3v!-w_nck^z-zb*htfk)ru$6f&d=k
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-CSRF_TRUSTED_ORIGINS = []
+ALLOWED_HOSTS = ['e-kitchen.up.railway.app','https://e-kitchen.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['e-kitchen.up.railway.app','https://e-kitchen.up.railway.app']
 
 
 # Application definition
