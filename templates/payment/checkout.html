@@ -1,0 +1,64 @@
+{% extends 'navbar.html' %}
+{% block content %}
+<body>
+    <div class="message">
+    {% if messages %}
+        {% for message in messages %}
+            {{message}}
+        {% endfor %}
+    {% endif %}
+    </div>
+ <h2>  &nbsp; &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp;  &nbsp;
+   Order Summary</h2>
+<div class="Order-summary">
+    <table>
+      <thead>
+        <tr>
+          <td>Item</td>
+          <td>Price</td>
+          <td>Quantity</td>
+        </tr>
+      </thead>
+      {% for items in cart_foods %}
+      <tbody>
+        <tr>
+          <td>{{items.name}}</td>
+          <td>GHS {{items.price}}</td>
+         
+
+          {% for key,value in quantity.items %}
+          {% if key == items.id|slugify %}
+          <td>{{value}}</td>
+          {% endif %}
+          {% endfor %}
+          {% endfor %}
+        
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td>Grand total</td>
+          <td>GHS {{total}}</td>
+        </tr>
+      </tfoot>
+    </table>
+    <p class="checkout"><button><a href="{% url 'cart_summary' %}">Change Items</a></button></p><hr/>
+
+</div>
+<br/><br/>
+<div class="Order-summary">
+  <form method="POST" action="{% url  'billing_info' %}">
+    {% csrf_token %}
+  <h4>Delivery Information</h4>
+  {{form.as_p}}
+  <p class="checkout"><button type="submit">Continue</button></p><hr/>
+</form>
+ 
+</div>
+
+
+        
+      
+
+
+{% endblock %}

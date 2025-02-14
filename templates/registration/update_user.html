@@ -1,0 +1,27 @@
+{% extends 'navbar.html' %}
+{% block content %}
+
+<div class="message">
+    {% if messages %}
+    {% for message in messages %}
+        {{message}}
+    {% endfor %}
+    {% endif %}
+  </div>
+
+<div>
+
+<form method="post">
+    {% csrf_token %}
+    <h3>User Profile</h3><hr/>
+    {{form.as_p}}
+    <br/><br/>
+    <h3>Delivery Address</h3><hr/>
+    {{Delivery_form.as_p}}
+    <br/><br/>
+    <p class="checkoutb"><button type="submit">Update Profile</button></p>
+</form>
+<br/><br/><hr/>
+<a href = "{% url 'update_password' %}"><button>Update Password</button><small>click to change password</small></a>
+</div>
+{% endblock %}

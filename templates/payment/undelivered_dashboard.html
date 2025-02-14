@@ -1,0 +1,43 @@
+{% extends 'navbar.html' %}
+{% block content %}
+<body>
+    <div class="message">
+    {% if messages %}
+        {% for message in messages %}
+            {{message}}
+        {% endfor %}
+    {% endif %}
+    </div>
+    <h2>  &nbsp; &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp;  &nbsp;  &nbsp;
+        Pending Orders</h2>
+<div class="Order-summary"> <table>
+    <thead>
+      <tr>
+        <td><b>Order N.0</b></td>
+        <td><b>Price</td>
+        <td><b>Customer name</b></td>
+        <td><b>Date Ordered</b></td>
+      </tr>
+    </thead>
+    {% for items in order %}
+    <tbody>
+      <tr>
+        <td><a href= {% url 'orders' items.id %}>{{items.id}}</a></td>
+        <td>GHS {{items.amount_paid}}</td>
+        <td>{{items.full_name}}</td>
+        <td>{{items.date_ordered}}</td>
+        {% endfor %}
+      
+      </tr>
+    </tbody>
+   
+  </table></div>
+  <p class="checkout"><button><a href="{% url 'delivered' %}">Delivered Orders</a></button></p><hr/>
+   
+
+</body> 
+  
+      
+
+
+{% endblock %}

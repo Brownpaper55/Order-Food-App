@@ -1,0 +1,104 @@
+{% extends 'navbar.html' %}
+{% block content %}
+<body>
+    <div class="our-menu">
+        <div class="line"><span>Starters</span></div>
+    <div class="menu-cont">
+        {% for items in menu %}
+        {% if items.dish_type.name == "Starters" %}
+        <div class="menus">
+        <img src="{{items.image.url}}" height="150" width="200">
+        <p class="name"><h3>{{items.name}}</h3></p>
+        <p>GHS{{items.price}}</p>
+        <p><button><a href="{% url 'food' items.id %}">add to cart</a></button></p>
+        </div>
+        {% endif %} 
+        {% endfor %}
+    
+    </div>
+    
+    
+    </div>
+
+    
+    
+    <div class="line"><span>Main-dish</span></div>
+   
+    <div class="menu-cont">
+    {% for items in menu %}
+    {% if items.dish_type.name == "Main" %}
+        <div class="menus">
+            <img src="{{items.image.url}}" height="150" width="200">
+        <p class="name"><h3>{{items.name}}</h3></p>
+        <p>GHS{{items.price}}</p>
+       <p><button><a href="{% url 'food' items.id %}">add to cart</a></button></p>
+        </div>
+        
+        {% endif %} 
+        {% endfor %}
+    </div>
+
+
+    <div class="line"><span>Side-Dish</span></div>
+    <div class="menu-cont">
+        {% for items in menu %}
+        {% if items.dish_type.name == "Side-Dish" %}
+        <div class="menus">
+        <img src="{{items.image.url}}" height="150" width="200">
+        <p class="name"><h3>{{items.name}}</h3></p>
+        <p>GHS{{items.price}}</p>
+        <p><button><a href="{% url 'food' items.id %}">add to cart</a></button></p>
+        </div>
+        {% endif %} 
+        {% endfor %}
+        
+    </div>
+
+
+    
+    <div class="line"><span>Speciality-Dish</span></div>
+    <div class="menu-cont">
+        {% for items in menu %}
+    {% if items.dish_type.name == "Specialty Dish" %}
+        <div class="menus">
+            <img src="{{items.image.url}}" height="150" width="200">
+            <p class="name"><h3>{{items.name}}</h3></p>
+            <p>GHS {{items.price}}</p>
+            <p><button><a href="{% url 'food' items.id %}">add to cart</a></button></p>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+
+    <div class="line"><span>Desserts</span></div>
+    <div class="menu-cont">
+        {% for items in menu %}
+        {% if items.dish_type.name == "Desserts" %}
+        <div class="menus">
+            <img src="{{items.image.url}}" height="150" width="200">
+        <p class="name"><h3>{{items.name}}</h3></p>
+        <p>GHS{{items.price}}</p>
+        <p><button><a href="{% url 'food' items.id %}">add to cart</a></button></p>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+
+    <div class="line"><span>Brunch</span></div>
+    <div class="menu-cont">
+        {% for items in menu %}
+        {% if items.dish_type.name == "Brunch" %}
+        <div class="menus">
+            <img src="{{items.image.url}}" height="150" width="200">
+            <p class="name"><h3>{{items.name}}</h3></p>
+            <p>GHS{{items.price}}</p>
+            <p><button><a href="{% url 'food' items.id %}">add to cart</a></button></p>
+        </div>
+        {% endif %}
+        {% endfor %}
+        
+    </div>
+</div>
+</body>
+
+{% endblock %}

@@ -1,0 +1,40 @@
+
+{% extends 'navbar.html' %}
+{% block content %}
+<body>
+    
+    <div class="line-container">
+        <span>Order {{order.id}}</span>
+    </div>
+    <div class="menu-container">
+        <div class="menu1">
+        <div class="menu">
+           <p> {% for item in items %}
+            {{item.dish}} ===>
+            Quantity:{{item.quantity}}</p>
+      
+      {% endfor %}
+      <br/><br/>
+
+
+
+      {% if not order.delivered %}
+      <form method = 'POST'>
+        {% csrf_token %}
+       <input type="hidden" name="delivery_status" value="true">
+       <p class='checkout'><button type="submit">Mark as delivered</button></p>
+       {% else %}
+       <form method = 'POST'>
+        {% csrf_token %}
+       <input type="hidden" name="delivery_status" value="false">
+       <p class='checkoutb'><button type="submit">Mark as undelivered</button></p> 
+      </form>
+      {% endif %}
+</body> 
+  
+      
+
+
+{% endblock %}
+
+

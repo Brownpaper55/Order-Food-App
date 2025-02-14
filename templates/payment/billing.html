@@ -1,0 +1,73 @@
+{% extends 'navbar.html' %}
+{% block content %}
+<body>
+    <div class="message">
+    {% if messages %}
+        {% for message in messages %}
+            {{message}}
+        {% endfor %}
+    {% endif %}
+    </div>
+
+<div class="Order-summary">
+    <h4>Order Summary</h4>
+    <table>
+      <thead>
+        <tr>
+          <td>Item</td>
+          <td>Price</td>
+          <td>Quantity</td>
+        </tr>
+      </thead>
+      {% for items in cart_foods %}
+      <tbody>
+        <tr>
+          <td>{{items.name}}</td>
+          <td>GHS {{items.price}}</td>
+         
+
+          {% for key,value in quantity.items %}
+          {% if key == items.id|slugify %}
+          <td>{{value}}</td>
+          {% endif %}
+          {% endfor %}
+          {% endfor %}
+        
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td>Grand total</td>
+          <td>GHS {{total}}</td>
+        </tr>
+      </tfoot>
+    </table><br/><hr/>
+    
+
+</div>
+<br/><br/>
+<div class="Order-summary">
+  
+  <h4>Billing Information</h4>
+ <p> name: {{Billing_info.full_name}}</p>
+  <p>email: {{Billing_info.email}}</p>
+  <p>Location: {{Billing_info.City}}</p>
+  <p>address: {{Billing_info.Address}}</p>
+  <p>Tel: {{Billing_info.Telephone}}</p>
+  <hr/>
+</div>
+<div class="Order-summary">
+    <h4>Payment Info</h4>
+    <form method="POST" action="{% url 'process_order' %}">
+      {% csrf_token %}
+        {{form.as_p}}
+        <p class='checkout'><button type="submit">PAY</button></p>
+    </form>
+</div>
+
+
+        
+      
+
+
+{% endblock %}

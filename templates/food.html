@@ -1,0 +1,60 @@
+{% extends 'navbar.html' %}
+{% block content %}
+<body>
+    <div class="message">
+    {% if messages %}
+    {% for message in messages %}
+        {{message}}
+    {% endfor %}
+    {% endif %}
+    </div>
+    <div class="food-cont">
+        <div class="food-img">
+            <img src="{{food.image.url}}" height="200" width="250" >
+        </div>
+        <div class="food-about">
+            <p><h2>{{food.name}}</h2></p>
+            <p><b>{{food.description}}</b></p>
+            <div class="form-group" id="cart-qty">
+                <label for="quantity">Quantity:</label>
+                <select id="quantity" name="quantity" required>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+            <p><button  type="button" value="{{food.id}}" id="add-cart">proceed</button>&nbsp;<button><a href={% url 'menu' %}>back</a></button></p>
+        </div>
+    </div>
+</body>
+<script>
+    //check if button pressed
+$(document).on('click', '#add-cart', function(e){
+    e.preventDefault();
+    $.ajax({
+        type: 'POST',
+        url: '{% url 'cart_add' %}',
+        data: {
+            product_id: $('#add-cart').val(),
+            product_qty: $('#cart-qty option:selected').text(),
+            csrfmiddlewaretoken: '{{ csrf_token}}',
+            action: 'post'
+        },
+
+        success: function(json){
+            //console.log(json)
+            document.getElementById("cart_quantity").textContent = json.qty
+        location.reload();      
+            
+        },
+        error:function(xhr, errmsg, err){
+
+        }
+
+    });
+
+})    
+</script>
+{% endblock %}

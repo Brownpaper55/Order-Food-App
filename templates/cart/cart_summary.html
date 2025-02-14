@@ -1,0 +1,119 @@
+{% extends 'navbar.html' %}
+{% block content %}
+<body>
+    <div class="message">
+    {% if messages %}
+        {% for message in messages %}
+            {{message}}
+        {% endfor %}
+    {% endif %}
+    </div>
+<h2>Cart Summary</h2>
+{% if cart_foods %}
+{% for food in cart_foods %}
+<div class="food-cont">
+    <div class="food-img">
+        <img src="{{food.image.url}}" height="200" width="250" >
+    </div>
+    <div class="food-about">
+        <p><h2>{{food.name}}</h2></p>
+        
+        <p>Price: GHS{{food.price}}</p>
+        
+        
+        <div class="form-group" id="cart-qty">
+            <label for="quantity">Quantity:</label>
+            <select id="select{{food.id}}" name="quantity" required>
+                {% for key,value in quantity.items %}
+                {% if key == food.id|slugify %}
+                <option value="selected">{{ value }}</option>
+                {% endif %}
+                {% endfor %}
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </div>
+       
+
+        <p><button><a href={% url 'menu' %}>Home</a></button>&nbsp;<button type="button" data-index="{{food.id}}" class="update-cart">Update</button>
+         &nbsp;<button type="button" data-index="{{food.id}}" class="remove-cart">Delete</button></p>
+    </div>
+</div>
+
+{% endfor %}
+<div class="base">
+<p><h3>Total: GHS{{total}}</h3></p>
+<p class="checkout"><button><a href="{% url 'checkout' %}">CheckOut</a></button></p>
+</div>
+{% else %}
+<br><br><br>
+There is nothing in your Cart!
+{% endif %}
+</body>
+<script>
+    //check if button pressed
+    //Update cart
+$(document).on('click', '.update-cart', function(e){
+    e.preventDefault();
+    //grab the product id
+    var productid= $(this).data('index');
+  
+
+    $.ajax({
+        type: 'POST',
+        url: '{% url 'cart_update' %}',
+        data: {
+            product_id:$(this).data('index'),
+            product_qty: $('#select' + productid + ' option:selected').text(),
+            csrfmiddlewaretoken: '{{ csrf_token}}',
+            action: 'post'
+        },
+
+        success: function(json){
+            //console.log(json)
+            
+           // document.getElementById("cart_quantity").textContent = json.qty
+           location.reload();
+        },
+        error:function(xhr, errmsg, err){
+
+        }
+
+    });
+
+})    
+
+
+//Remove item from cart
+$(document).on('click', '.remove-cart', function(e){
+    e.preventDefault();
+    
+    $.ajax({
+        type: 'POST',
+        url: '{% url 'cart_delete' %}',
+        data: {
+            product_id:$(this).data('index'),
+            //product_qty: $('#select' + productid + 'option:selected').text(),
+            csrfmiddlewaretoken: '{{ csrf_token}}',
+            action: 'post'
+        },
+
+        success: function(json){
+            //console.log(json)
+            
+           // document.getElementById("cart_quantity").textContent = json.qty
+           location.reload();
+        },
+        error:function(xhr, errmsg, err){
+
+        }
+
+    });
+
+})    
+</script>
+
+{% endblock %}

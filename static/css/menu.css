@@ -1,0 +1,180 @@
+body{
+    font-family: 'Courier New', Courier, monospace;
+    background-color:white
+}
+ 
+
+.our-menu{
+    display: block;
+    margin: 10px 10px;
+}
+
+.menu-cont{
+    display:flex;
+    flex-wrap: wrap;
+    margin: 30px;
+    background-color: white;
+    cursor: pointer;
+    overflow-x: unset;
+    
+}
+.menu-cont a{
+    text-decoration: none;
+    background-color: rgb(245, 18, 94);
+    color: white;
+}
+.menus{
+    display: block;
+    justify-content: center;
+    align-content: center;
+    margin: 10px;
+    padding: 10px 10px;
+    text-align:center;
+    height: 40%;
+    min-width:20%;
+    box-sizing: border-box;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+}
+
+
+.line{
+    display: flex;
+    align-items: center; /* Vertically center text and line */
+    justify-content: center; /* Horizontally center both elements */
+    margin-top: 50px;
+}
+
+.line::after{
+    content: ''; /* Empty content for the line */
+    flex-grow: 1; /* Make the line take up available space */
+    height: 1px; /* Set line thickness */
+    background-color:lightgray; /* Line color */
+    margin-right: 10px; /
+}
+.line span{
+    font-size: 24px; /* Text size */
+    font-weight: bold; /* Optional, for emphasis */
+
+}
+
+.menus button{
+    background-color: rgb(245, 18, 94);
+    color: white;
+    border-color: rgb(245, 18, 94);
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: opacity 0.3s ease;
+}
+.menus button:hover{
+    opacity: 0.6;
+
+}
+
+.food-cont{
+    display:flex;
+    flex-wrap: wrap;
+    margin: 30px;
+    background-color: white;
+    cursor: pointer;
+    overflow-x: unset;
+}
+.food-about{
+    display: block;
+    justify-content: center;
+    align-content: center;
+    margin: 10px;
+    padding: 10px 10px;
+    text-align:center;
+    height: 40%;
+    min-width:20%;
+    box-sizing: border-box;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+}
+.food-about button{
+    background-color: rgb(245, 18, 94);
+    color: white;
+    border-color: rgb(245, 18, 94);
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: opacity 0.3s ease;
+
+}
+.food-about button:hover{
+    opacity: 0.6;
+}
+.food-cont a{
+    text-decoration: none;
+    background-color: rgb(245, 18, 94);
+    color: white;
+    color: white;
+}
+.food-cont .remove-cart{
+    text-decoration: none;
+    background-color: black;
+    color: white;
+    border-color: black;
+    
+} 
+.form-group{
+    color: blue;
+}
+.form-group:hover{
+    cursor: pointer;
+}
+
+.base{
+    justify-items:center;
+    margin-top: 40px;       
+}
+.checkout button{
+    background-color: green;
+    color: white;
+    border-color: green;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: opacity 0.3s ease;
+}
+.checkout a{
+    text-decoration: none;
+    background-color: green;
+    color: white;
+}
+.checkoutb button{
+    background-color: black;
+    color: white;
+    border-color: black;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: opacity 0.3s ease;
+}
+.checkoutb a{
+    text-decoration: none;
+    background-color:black;
+    color: white;
+
+}
+
+.Order-summary{
+    font-family: Arial, sans-serif;
+    margin: 10px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+.Order-summary table{
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    margin: 10px;
+    align-items: center;
+    border:solid 1px black
+}
+.Order-summary tbody{
+    color: gray;
+    margin-bottom: 40px;
+}
